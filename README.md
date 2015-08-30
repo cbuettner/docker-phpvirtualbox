@@ -17,7 +17,7 @@ environment - mirroring the VirtualBox GUI through its web interface.
 
 ## Usage
 
-This docker image is available as a [trusted build on the docker index](https://index.docker.io/u/clue/phpvirtualbox/).
+This docker image is available as a [trusted build on the docker index](https://index.docker.io/u/cbuettner/phpvirtualbox/).
 Using this image for the first time will start a download automatically.
 Further runs will be immediate, as the image will be cached locally.
 
@@ -41,17 +41,17 @@ that eases exposing the `vboxwebsrv`.
 For PC2:
 
 ```bash
-$ docker run -it --name=vb2 clue/vboxwebsrv vbox@10.1.1.2
+$ docker run -it --name=vb2 cbuettner/vboxwebsrv vbox@10.1.1.2
 ```
 
 And for PC3:
 
 ```bash
-$ docker run -it --name=vb3 clue/vboxwebsrv myuser@10.1.1.3
+$ docker run -it --name=vb3 cbuettner/vboxwebsrv myuser@10.1.1.3
 ```
 
 This will start an interactive container that will establish a connection to the given host.
-To establish an encrypted SSH connection it will likely ask for your password for each user. This is the user that runs your virtual machines (VMs). See [clue/vboxwebsrv](https://github.com/clue/docker-vboxwebsrv) for more details.
+To establish an encrypted SSH connection it will likely ask for your password for each user. This is the user that runs your virtual machines (VMs). See [cbuettner/vboxwebsrv](https://github.com/cbuettner/docker-vboxwebsrv) for more details.
 
 > Some background: The official phpVirtualBox readme describes setting up the `vboxwebsrv` daemon so
 > that it is automatically started when the machine boots up and is exposed over the network.
@@ -59,7 +59,7 @@ To establish an encrypted SSH connection it will likely ask for your password fo
 > and expose its socket only through an encrypted SSH tunnel.
 >
 > In fact, if you already have your `vboxwebsrv` set up, you don't have to rely on
-> the clue/vboxwebrv container. In this case, you can substitute the following link by
+> the cbuettner/vboxwebrv container. In this case, you can substitute the following link by
 > supplying ENV variables instead. You can also pass a visual name like this:
 >
 > ```bash
@@ -70,7 +70,7 @@ Now that all `vboxwebsrv` instance are up, we can link everything together and s
 The recommended way to run this container looks like this:
 
 ```bash
-$ docker run -d --link vb2:FirstPC --link vb3:MyLaptop -p 80:80 clue/phpvirtualbox
+$ docker run -d --link vb2:FirstPC --link vb3:MyLaptop -p 80:80 cbuettner/phpvirtualbox
 ```
 
 You can now point your webbrowser to this URL:
@@ -84,4 +84,4 @@ This is a rather common setup following docker's conventions:
 * `-d` will run a detached session running in the background
 * `-p {OutsidePort}:80` will bind the webserver to the given outside port
 * `--link {ContainerName}:{DisplayName}` links a `vboxwebsrv` instance with the given {ContainerName} and exposes it under the visual {DisplayName}
-* `clue/phpvirtualbox` the name of this docker image
+* `cbuettner/phpvirtualbox` the name of this docker image
