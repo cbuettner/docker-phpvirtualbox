@@ -1,5 +1,5 @@
 FROM ubuntu
-MAINTAINER Christian Lück <christian@lueck.tv>
+MAINTAINER Carsten Büttner <carsten.buettner@gmail.com>
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
   nginx php5-fpm supervisor \
